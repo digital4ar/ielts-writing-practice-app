@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IELTS Writing Feedback App</title>
+    <title>IELTS Writing Feedback</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             padding: 20px;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header img {
+            width: 200px;
+            margin-bottom: 10px;
         }
         h1 {
             color: #2c3e50;
@@ -15,6 +24,20 @@
         textarea {
             width: 100%;
             height: 200px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background-color: #34495e;
         }
         pre {
             white-space: pre-wrap;
@@ -23,35 +46,41 @@
             padding: 15px;
             margin-top: 20px;
         }
-        .footer {
+        footer {
             margin-top: 40px;
             font-size: 0.9em;
             color: #666;
+        }
+        .footer-links {
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-<h1>IELTS Writing Feedback App</h1>
+<header>
+    <img src="{{ url_for('static', filename='images/SparkSkyTech.png') }}" alt="SparkSkyTech Logo">
+    <h1>IELTS Writing Feedback App</h1>
+</header>
 
 <form method="post">
-    <label for="task_type">Task Type:</label>
+    <label for="task_type">Task Type:</label><br>
     <select name="task_type" id="task_type">
         <option value="Academic">Academic</option>
         <option value="General">General</option>
     </select><br><br>
 
-    <label for="task_number">Task Number:</label>
+    <label for="task_number">Task Number:</label><br>
     <select name="task_number" id="task_number">
         <option value="1">1</option>
         <option value="2">2</option>
     </select><br><br>
 
     <label for="prompt_text">Prompt:</label><br>
-    <textarea name="prompt_text" id="prompt_text">Describe the chart below.</textarea><br><br>
+    <textarea name="prompt_text" id="prompt_text" rows="4" cols="50">{{ prompt_text or "Describe the chart below." }}</textarea><br><br>
 
     <label for="writing">Your Writing:</label><br>
-    <textarea name="writing" id="writing"></textarea><br><br>
+    <textarea name="writing" id="writing" rows="10" cols="50">{{ writing }}</textarea><br><br>
 
     <input type="submit" value="Get Feedback">
 </form>
@@ -61,12 +90,20 @@
 {% endif %}
 
 <div class="footer">
-    <p>Powered by <a href="https://www.sparkskytech.com"  target="_blank">SparkSkyTech</a></p>
-    <p>Check out my <a href="https://www.youtube.com/@SparkSkyTech"  target="_blank">YouTube Channel</a> for more tips!</p>
-    <p>📚 Want to improve your IELTS Writing? Try:  
-        <a href="https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub"  target="_blank">IELTS Mastery Hub</a> |
-        <a href="https://www.sparkskytech.com/shop/learning-education/vocabulary-builder"  target="_blank">Vocabulary Builder</a>
+    <p class="footer-links">
+        🔹 Powered by <a href="https://www.sparkskytech.com"  target="_blank"><strong>SparkSkyTech</strong></a><br>
+        🔹 Check out my <a href="https://www.youtube.com/@SparkSkyTech"  target="_blank"><strong>YouTube Channel</strong></a> for more tips!<br>
+        🔹 Want to improve your IELTS Writing? Try:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/mastery-ielts-hub"  target="_blank">IELTS Mastery Hub</a><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/vocabulary-builder"  target="_blank">Vocabulary Builder</a>
     </p>
+
+    <p><strong>📘 Official Resources:</strong></p>
+    <ul class="footer-links">
+        <li>• <a href="https://learnenglish.britishcouncil.org/skills/writing"  target="_blank">British Council - Writing Tips</a></li>
+        <li>• <a href="https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing"  target="_blank">IDP - IELTS Writing Guide</a></li>
+        <li>• <a href="https://ieltsliz.com/ielts-writing-task-2/"  target="_blank">IELTS Liz - Task 2 Practice</a></li>
+    </ul>
 </div>
 
 </body>

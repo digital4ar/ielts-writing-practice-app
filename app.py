@@ -19,12 +19,13 @@ def word_count(text):
 def get_gpt_feedback(prompt_text, user_writing, task_number, task_type):
     system_prompt = f"""
 You are an experienced IELTS Writing Examiner. Evaluate the following Task {task_number} ({task_type}) response.
-Give detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
+Provide detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
+Also, provide a full model answer that demonstrates how to achieve a high score.
 
 User Prompt: {prompt_text}
 User Writing: {user_writing}
 
-Return in this format:
+Return your response in exactly this format:
 
 Band Score: [score]
 Strengths:
@@ -90,4 +91,4 @@ def index():
                            result=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
