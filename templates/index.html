@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>IELTS Writing Practice & Feedback Hub</title>
-    <!-- Load external CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -27,6 +26,15 @@
     <select name="task_number" id="task_number">
         <option value="1">1</option>
         <option value="2">2</option>
+    </select><br><br>
+
+    <!-- Prompt Selection Dropdown -->
+    <label for="prompt_select">Choose a Task 2 Prompt (optional):</label><br>
+    <select name="prompt_select" id="prompt_select" onchange="updatePrompt(this.value)">
+        <option value="">Select a prompt...</option>
+        {% for prompt in prompts %}
+            <option value="{{ prompt.prompt }}">{{ prompt.title }}</option>
+        {% endfor %}
     </select><br><br>
 
     <label for="prompt_text">Prompt:</label><br>
@@ -54,7 +62,6 @@
                     <option value="{{ prompt.prompt }}">{{ prompt.title }}</option>
                 {% endfor %}
             </select><br><br>
-
             <input type="submit" value="Use This Prompt">
         </form>
 
@@ -79,7 +86,6 @@
     </ul>
 </div>
 
-<!-- JavaScript for dark mode + prompt auto-fill -->
 <script>
 function updatePrompt(value) {
     const selectedPrompt = document.getElementById("prompt_select").value;

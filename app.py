@@ -20,13 +20,35 @@ with open("prompts.json", "r") as f:
 app = Flask(__name__)
 
 def word_count(text):
-    return len(text.strip().split())
+    return len(text.strip().split()
 
 def get_gpt_feedback(prompt_text, user_writing, task_number, task_type):
+    # Check if selected prompt has a pre-written model answer
+    matched_prompt = None
+    for p in prompts_list:
+        if p["prompt"].strip() == prompt_text.strip():
+            matched_prompt = p
+            break
+
+    # If a pre-written model answer exists, use it directly
+    if matched_prompt and "model_answer" in matched_prompt:
+        return f"""
+Band Score: {matched_prompt.get("score", "7.0")}
+Strengths:
+{matched_prompt.get("strengths", "- Good structure\n- Clear position").replace("- ", "- ").strip()}
+Weaknesses:
+{matched_prompt.get("weaknesses", "- Some repetition\n- Limited examples").replace("- ", "- ").strip()}
+Improvement Tips:
+{matched_prompt.get("tips", "- Use varied vocabulary\n- Support arguments with real-world examples").replace("- ", "- ").strip()}
+Model Answer:
+{matched_prompt["model_answer"]}
+"""
+
+    # Otherwise, fall back to GPT
     system_prompt = f"""
 You are an experienced IELTS Writing Examiner. Evaluate the following Task {task_number} ({task_type}) response.
 Provide detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
-Also, provide a full model answer that demonstrates how to achieve a high score.
+Also, provide a full model answer based on the given prompt.
 
 User Prompt: {prompt_text}
 User Writing: {user_writing}
@@ -83,17 +105,21 @@ def index():
         prompt_select = request.form.get("prompt_select", "")
         prompt_text = prompt_select or request.form.get("prompt_text", "")
 
-        # Word count validation
         min_words = 250 if task_number == "2" else 150
         if word_count(writing) < min_words:
             result = f"⚠️ Please write at least {min_words} words for Task {task_number}."
         else:
             result = get_gpt_feedback(prompt_text, writing, task_number, task_type)
 
-    return render_template("index.html",
-                           writing=writing,
-                           task_type=task_type,
-                           task_number=task_number,
-                           prompt_text=prompt_text,
-                           result=result,
-                           prompts=prompts_list)
+    return render_template(
+        "index.html",
+        writing=writing,
+        task_type=task_type,
+        task_number=task_number,
+        prompt_text=prompt_text,
+        result=result,
+        prompts=prompts_list
+    )
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
