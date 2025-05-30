@@ -1,0 +1,14 @@
+[
+    {
+        "task_number": "1",
+        "task_type": "Academic",
+        "prompt": "The chart below shows the number of visitors to three UK museums from 2000 to 2015.",
+        "model_answer": "The line graph illustrates the number of visitors to three UK museums between 2000 and 2015. Overall, the Science Museum experienced the most significant increase in visitor numbers, while the National Gallery saw a decline after 2010.\n\nThe British Museum had a steady rise in visitors from 5 million in 2000 to over 6.5 million by 2015...\n\nIn conclusion, all museums showed fluctuating trends, but the Science Museum performed best overall."
+    },
+    {
+        "task_number": "2",
+        "task_type": "General",
+        "prompt": "Some people think that social media has improved communication between people. Others believe it has made communication worse. Discuss both views and give your own opinion.",
+        "model_answer": "Social media has revolutionized how we communicate in the digital age. On one hand, platforms like Facebook, Twitter, and Instagram have enabled instant communication across borders and allowed people to maintain connections easily...\n\nOn the other hand, critics argue that face-to-face communication has declined due to excessive use of mobile devices...\n\nIn my view, social media is a tool, and its impact depends on how we use it. When used responsibly, it can enhance communication rather than harm it."
+    }
+]
