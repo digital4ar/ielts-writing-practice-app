@@ -1,20 +1,75 @@
 /* static/css/styles.css */
 
-/* Base Styles */
+/* Google Font already loaded in index.html */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Lato', sans-serif;
+    background-color: #f9f9f9; 
     color: #333;
     margin: 0 auto;
     padding: 20px;
     max-width: 800px;
+    transition: all 0.3s ease;
+}
+
+.dark-mode {
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+}
+
+.dark-mode .more-practice {
+    background-color: #2c2c2c;
+    border-color: #444;
+    color: #f9f9f9;
+}
+
+.dark-mode pre {
+    background: #2c2c2c;
+    color: #f9f9f9;
+}
+
+.dark-mode header {
+    background-color: #001a33;
+    color: white;
+}
+
+.dark-mode input[type="submit"] {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.dark-mode input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.dark-mode .footer-links {
+    color: #bbb;
+}
+
+.dark-mode .footer-links a {
+    color: #ffd700;
+}
+
+button.dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #001f3f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 1000;
 }
 
 header {
     text-align: center;
     margin-bottom: 30px;
     padding: 20px 0;
-    background-color: #001f3f; /* Navy Blue */
+    background-color: #001f3f;
     color: white;
     border-radius: 8px;
 }
@@ -28,10 +83,9 @@ header h1 {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
-    color: #ffd700; /* Gold */
+    color: #ffd700;
 }
 
-/* Form Styling */
 form {
     background: white;
     padding: 20px;
@@ -53,7 +107,7 @@ select, textarea, input[type="submit"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
-    box-sizing: border-box;
+    font-family: inherit;
     transition: border 0.3s ease;
 }
 
@@ -70,13 +124,13 @@ input[type="submit"] {
     cursor: pointer;
     border: none;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 input[type="submit"]:hover {
     background-color: #002d5b;
 }
 
-/* Feedback Output */
 pre {
     white-space: pre-wrap;
     background: #fff;
@@ -86,14 +140,33 @@ pre {
     border-left: 4px solid #001f3f;
     font-size: 16px;
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Footer / Resources */
-.footer-links {
-    line-height: 1.6;
+.more-practice {
     margin-top: 40px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    animation: fadeInUp 0.4s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer-links {
     font-size: 0.9em;
     color: #666;
+    line-height: 1.6;
 }
 
 .footer-links a {
@@ -103,23 +176,4 @@ pre {
 
 .footer-links a:hover {
     text-decoration: underline;
-}
-
-/* Responsive Layout */
-@media (max-width: 600px) {
-    header img {
-        width: 150px;
-    }
-
-    header h1 {
-        font-size: 20px;
-    }
-
-    select, textarea, input[type="submit"] {
-        font-size: 15px;
-    }
-
-    .footer-links {
-        font-size: 0.85em;
-    }
 }

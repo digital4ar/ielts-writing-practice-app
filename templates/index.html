@@ -8,6 +8,9 @@
 </head>
 <body>
 
+<!-- Dark Mode Toggle -->
+<button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
 <header>
     <img src="{{ url_for('static', filename='images/SparkSkyTech.png') }}" alt="SparkSkyTech Logo" width="200">
     <h1>IELTS Writing Practice & Feedback Hub</h1>
@@ -47,20 +50,9 @@
             <label for="prompt_select">Choose a prompt:</label><br>
             <select name="prompt_select" id="prompt_select" onchange="updatePrompt(this.value)">
                 <option value="">Select a prompt...</option>
-                <option value="How to reduce crime: Longer prison vs other methods">Reduce Crime – Longer Sentences vs Other Methods</option>
-                <option value="Is technology the main cause of environmental issues?">Technology & Environment Problems</option>
-                <option value="Should universities focus more on job skills than theory?">Job Skills vs Theory in University</option>
-                <option value="Should schools teach kids about healthy living?">Teach Healthy Lifestyle at School?</option>
-                <option value="Is unpaid work good for student development?">Unpaid Work for Student Development</option>
-                <option value="Should formal education start early or after age 7?">Formal Education Age Debate</option>
-                <option value="Working from home – pros and cons">Remote Work Advantages & Disadvantages</option>
-                <option value="Has tech made life easier or more complicated?">Technology – Easier or More Complicated Life?</option>
-                <option value="AI job loss fears – problems and solutions">AI Job Loss Fears</option>
-                <option value="Mobile apps – pros and cons for daily use">Mobile Apps: Pros & Cons</option>
-                <option value="Family time is decreasing – why and how to fix it">Why Less Family Time?</option>
-                <option value="Delaying parenthood – causes & effects">Having Children Later in Life</option>
-                <option value="Fitness tech – pros and cons">Wearable Fitness Tech</option>
-                <option value="Advertising budgets – impact on consumer choices">Big Advertising Spending</option>
+                {% for prompt in prompts %}
+                    <option value="{{ prompt.prompt }}">{{ prompt.title }}</option>
+                {% endfor %}
             </select><br><br>
 
             <input type="submit" value="Use This Prompt">
@@ -87,12 +79,25 @@
     </ul>
 </div>
 
-<!-- JavaScript to auto-fill prompt text -->
+<!-- JavaScript for dark mode + prompt auto-fill -->
 <script>
 function updatePrompt(value) {
     const selectedPrompt = document.getElementById("prompt_select").value;
     document.getElementById("prompt_text").value = selectedPrompt;
 }
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+}
+
+// Load saved preference
+window.addEventListener("DOMContentLoaded", () => {
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    if (darkMode) {
+        document.body.classList.add("dark-mode");
+    }
+});
 </script>
 
 </body>

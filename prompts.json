@@ -1,14 +1,88 @@
-[
+{
+  "prompts": [
     {
-        "task_number": "1",
-        "task_type": "Academic",
-        "prompt": "The chart below shows the number of visitors to three UK museums from 2000 to 2015.",
-        "model_answer": "The line graph illustrates the number of visitors to three UK museums between 2000 and 2015. Overall, the Science Museum experienced the most significant increase in visitor numbers, while the National Gallery saw a decline after 2010.\n\nThe British Museum had a steady rise in visitors from 5 million in 2000 to over 6.5 million by 2015...\n\nIn conclusion, all museums showed fluctuating trends, but the Science Museum performed best overall."
+      "id": 1,
+      "title": "Reduce Crime – Longer Sentences vs Other Methods",
+      "prompt": "Some people believe that the best way to reduce crime is to give longer prison sentences. Others think there are better ways to reduce crime. To what extent do you agree or disagree?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
     },
     {
-        "task_number": "2",
-        "task_type": "General",
-        "prompt": "Some people think that social media has improved communication between people. Others believe it has made communication worse. Discuss both views and give your own opinion.",
-        "model_answer": "Social media has revolutionized how we communicate in the digital age. On one hand, platforms like Facebook, Twitter, and Instagram have enabled instant communication across borders and allowed people to maintain connections easily...\n\nOn the other hand, critics argue that face-to-face communication has declined due to excessive use of mobile devices...\n\nIn my view, social media is a tool, and its impact depends on how we use it. When used responsibly, it can enhance communication rather than harm it."
+      "id": 2,
+      "title": "Technology & Environment Problems",
+      "prompt": "Technology is the main cause of environmental problems. To what extent do you agree?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 3,
+      "title": "Job Skills vs Theory in University",
+      "prompt": "Should universities focus more on job-related skills than theory?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 4,
+      "title": "Teach Healthy Lifestyle at School",
+      "prompt": "Some believe schools should teach children how to lead a healthy lifestyle. Do you agree?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 5,
+      "title": "Unpaid Work for Student Development",
+      "prompt": "Is unpaid work valuable for students' development?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 6,
+      "title": "Formal Education Age Debate",
+      "prompt": "Some people think children should begin their formal education at a very early age. Others believe they should begin at least at 7 years old. Discuss both views and give your own opinion.",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 7,
+      "title": "Remote Work Advantages & Disadvantages",
+      "prompt": "In many countries, people now work from home instead of going to an office every day. What are the advantages and disadvantages of this development?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 8,
+      "title": "Has Tech Made Life Easier or More Complicated?",
+      "prompt": "Some people believe technology has made our lives more complicated, while others think it has made life easier. Discuss both views and give your opinion.",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 9,
+      "title": "AI Job Loss Fears",
+      "prompt": "With the rise of artificial intelligence and automation, many people fear job losses in the future. What problems might this cause, and how can they be addressed?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 10,
+      "title": "Mobile Apps Pros & Cons",
+      "prompt": "Many people use mobile apps for banking, shopping, and communication. What are the advantages and disadvantages of this trend?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 11,
+      "title": "Why Less Family Time?",
+      "prompt": "In many countries, family members are spending less time together than in the past. What are the reasons for this, and what can be done to improve family bonds?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 12,
+      "title": "Having Children Later in Life",
+      "prompt": "Many people delay having children until later in life. Why is this happening? Do the advantages outweigh the disadvantages?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 13,
+      "title": "Wearable Fitness Tech",
+      "prompt": "Many people use wearable fitness trackers and health apps to monitor their well-being. What are the advantages and disadvantages of using technology to track health?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
+    },
+    {
+      "id": 14,
+      "title": "Advertising Spending & Consumer Behavior",
+      "prompt": "Companies spend huge amounts of money on advertising their products. Why do they do this? Do you think this influences people's purchasing behavior?",
+      "model_answer": "[Dynamic model answer will be generated based on selected prompt]"
     }
-]
+  ]
+}

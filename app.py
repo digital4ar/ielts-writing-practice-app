@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import openai
 import os
 from dotenv import load_dotenv
+import json
+import random
 
 # Load environment variables
 load_dotenv()
@@ -10,6 +12,11 @@ load_dotenv()
 client = openai.OpenAI(
     api_key=os.getenv("OPENAI_API_KEY")
 )
+
+# Load prompts from JSON
+with open("prompts.json", "r") as f:
+    prompt_data = json.load(f)
+    prompts_list = prompt_data["prompts"]
 
 app = Flask(__name__)
 
@@ -20,7 +27,7 @@ def get_gpt_feedback(prompt_text, user_writing, task_number, task_type):
     system_prompt = f"""
 You are an experienced IELTS Writing Examiner. Evaluate the following Task {task_number} ({task_type}) response.
 Provide detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
-Also, provide a full model answer that demonstrates how to achieve a high score.
+Also, provide a full model answer based on the given prompt.
 
 User Prompt: {prompt_text}
 User Writing: {user_writing}
@@ -74,7 +81,8 @@ def index():
         writing = request.form.get("writing", "")
         task_type = request.form.get("task_type", "Academic")
         task_number = request.form.get("task_number", "1")
-        prompt_text = request.form.get("prompt_select", "") or request.form.get("prompt_text", "")
+        prompt_select = request.form.get("prompt_select", "")
+        prompt_text = prompt_select or request.form.get("prompt_text", "")
 
         # Word count validation 
         min_words = 250 if task_number == "2" else 150
@@ -88,7 +96,5 @@ def index():
                            task_type=task_type,
                            task_number=task_number,
                            prompt_text=prompt_text,
-                           result=result)
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+                           result=result,
+                           prompts=prompts_list)
