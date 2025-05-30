@@ -3,7 +3,6 @@ import openai
 import os
 from dotenv import load_dotenv
 import json
-import random
 
 # Load environment variables
 load_dotenv()
@@ -27,14 +26,14 @@ def get_gpt_feedback(prompt_text, user_writing, task_number, task_type):
     system_prompt = f"""
 You are an experienced IELTS Writing Examiner. Evaluate the following Task {task_number} ({task_type}) response.
 Provide detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
-Also, provide a full model answer based on the given prompt.
+Also, provide a full model answer that demonstrates how to achieve a high score.
 
 User Prompt: {prompt_text}
 User Writing: {user_writing}
 
 Return your response in exactly this format:
 
-Band Score: [score]
+Band Score: [score between 6.0 - 7.5]
 Strengths:
 - [point 1]
 - [point 2]
@@ -52,7 +51,7 @@ Model Answer:
 📝 [IDP IELTS Writing Guide](https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing)   
 🎯 [IELTS Liz - Task 2 Practice](https://ieltsliz.com/ielts-writing-task-2/)   
 🧠 [IELTS Mastery Hub](https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub)   
-📺 [My IELTS Writing YouTube Playlist](https://www.youtube.com/playlist?list=PLaSmN7qMfXNQH1rV-Ksj7xEnKTOgxTRfo)
+📺 [My IELTS Writing YouTube Playlist](https://www.youtube.com/@SparkSkyTech) 
 """
 
     try:
@@ -84,7 +83,7 @@ def index():
         prompt_select = request.form.get("prompt_select", "")
         prompt_text = prompt_select or request.form.get("prompt_text", "")
 
-        # Word count validation 
+        # Word count validation
         min_words = 250 if task_number == "2" else 150
         if word_count(writing) < min_words:
             result = f"⚠️ Please write at least {min_words} words for Task {task_number}."
