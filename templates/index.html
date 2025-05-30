@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IELTS Writing Feedback</title>
+    <title>IELTS Writing Practice & Feedback Hub</title>
     <!-- Load external CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
 <header>
-    <img src="{{ url_for('static', filename='images/SparkSkyTech.png') }}" alt="SparkSkyTech Logo">
-    <h1>IELTS Writing Feedback App</h1>
+    <img src="{{ url_for('static', filename='images/SparkSkyTech.png') }}" alt="SparkSkyTech Logo" width="200">
+    <h1>IELTS Writing Practice & Feedback Hub</h1>
 </header>
 
 <form method="post">
@@ -37,6 +37,37 @@
 
 {% if result %}
     <pre>{{ result }}</pre>
+
+    <!-- Want More Practice Section -->
+    <div class="more-practice">
+        <h2>📘 Want More Practice?</h2>
+        <p>Try one of our top IELTS Writing Task 2 prompts:</p>
+
+        <form method="post" onsubmit="document.getElementById('prompt_text').value = document.getElementById('prompt_select').value; return true;">
+            <label for="prompt_select">Choose a prompt:</label><br>
+            <select name="prompt_select" id="prompt_select" onchange="updatePrompt(this.value)">
+                <option value="">Select a prompt...</option>
+                <option value="How to reduce crime: Longer prison vs other methods">Reduce Crime – Longer Sentences vs Other Methods</option>
+                <option value="Is technology the main cause of environmental issues?">Technology & Environment Problems</option>
+                <option value="Should universities focus more on job skills than theory?">Job Skills vs Theory in University</option>
+                <option value="Should schools teach kids about healthy living?">Teach Healthy Lifestyle at School?</option>
+                <option value="Is unpaid work good for student development?">Unpaid Work for Student Development</option>
+                <option value="Should formal education start early or after age 7?">Formal Education Age Debate</option>
+                <option value="Working from home – pros and cons">Remote Work Advantages & Disadvantages</option>
+                <option value="Has tech made life easier or more complicated?">Technology – Easier or More Complicated Life?</option>
+                <option value="AI job loss fears – problems and solutions">AI Job Loss Fears</option>
+                <option value="Mobile apps – pros and cons for daily use">Mobile Apps: Pros & Cons</option>
+                <option value="Family time is decreasing – why and how to fix it">Why Less Family Time?</option>
+                <option value="Delaying parenthood – causes & effects">Having Children Later in Life</option>
+                <option value="Fitness tech – pros and cons">Wearable Fitness Tech</option>
+                <option value="Advertising budgets – impact on consumer choices">Big Advertising Spending</option>
+            </select><br><br>
+
+            <input type="submit" value="Use This Prompt">
+        </form>
+
+        <p style="margin-top: 10px;"><small>💡 Tip: These prompts appear frequently in recent IELTS exams!</small></p>
+    </div>
 {% endif %}
 
 <div class="footer">
@@ -44,7 +75,7 @@
         🔹 Powered by <a href="https://www.sparkskytech.com"  target="_blank"><strong>SparkSkyTech</strong></a><br>
         🔹 Check out my <a href="https://www.youtube.com/@SparkSkyTech"  target="_blank"><strong>YouTube Channel</strong></a> for more tips!<br>
         🔹 Want to improve your IELTS Writing? Try:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/mastery-ielts-hub"  target="_blank">IELTS Mastery Hub</a><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub"  target="_blank">IELTS Mastery Hub</a><br>
         &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/vocabulary-builder"  target="_blank">Vocabulary Builder</a>
     </p>
 
@@ -55,6 +86,14 @@
         <li>• <a href="https://ieltsliz.com/ielts-writing-task-2/"  target="_blank">IELTS Liz - Task 2 Practice</a></li>
     </ul>
 </div>
+
+<!-- JavaScript to auto-fill prompt text -->
+<script>
+function updatePrompt(value) {
+    const selectedPrompt = document.getElementById("prompt_select").value;
+    document.getElementById("prompt_text").value = selectedPrompt;
+}
+</script>
 
 </body>
 </html>

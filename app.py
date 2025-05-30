@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-print("🔍 API Key:", os.getenv("OPENAI_API_KEY"))  # For testing only
-
 
 # Initialize OpenAI client
 client = openai.OpenAI(
@@ -22,7 +20,7 @@ def get_gpt_feedback(prompt_text, user_writing, task_number, task_type):
     system_prompt = f"""
 You are an experienced IELTS Writing Examiner. Evaluate the following Task {task_number} ({task_type}) response.
 Provide detailed feedback including Band Score, Strengths, Weaknesses, and Improvement Tips.
-Also, provide a full model answer that demonstrates how to achieve a high score. Ensure the model answer is at least 250 words for Task 2 and 150 words for Task 1.
+Also, provide a full model answer that demonstrates how to achieve a high score.
 
 User Prompt: {prompt_text}
 User Writing: {user_writing}
@@ -45,8 +43,8 @@ Model Answer:
 📚 Useful Resources:
 📘 [British Council Writing Tips](https://learnenglish.britishcouncil.org/skills/writing)   
 📝 [IDP IELTS Writing Guide](https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing)   
-🎯 [IELTS Writing Task 2 Practice](https://ieltsliz.com/ielts-writing-task-2/)   
-🧠 [Mastery IELTS Hub](https://www.sparkskytech.com/shop/learning-education/mastery-ielts-hub)   
+🎯 [IELTS Liz - Task 2 Practice](https://ieltsliz.com/ielts-writing-task-2/)   
+🧠 [IELTS Mastery Hub](https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub)   
 📺 [My IELTS Writing YouTube Playlist](https://www.youtube.com/playlist?list=PLaSmN7qMfXNQH1rV-Ksj7xEnKTOgxTRfo)
 """
 
@@ -57,7 +55,7 @@ Model Answer:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_writing}
             ],
-            max_tokens=1500,  # Increase token limit for longer responses 
+            max_tokens=1000,
             temperature=0.7
         )
         return response.choices[0].message.content.strip()
@@ -73,10 +71,10 @@ def index():
     prompt_text = ""
 
     if request.method == "POST":
-        writing = request.form["writing"]
-        task_type = request.form["task_type"]
-        task_number = request.form["task_number"]
-        prompt_text = request.form.get("prompt_text", "Describe the chart below.")
+        writing = request.form.get("writing", "")
+        task_type = request.form.get("task_type", "Academic")
+        task_number = request.form.get("task_number", "1")
+        prompt_text = request.form.get("prompt_select", "") or request.form.get("prompt_text", "")
 
         # Word count validation 
         min_words = 250 if task_number == "2" else 150
