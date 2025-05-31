@@ -66,7 +66,7 @@ Model Answer:
 📝 [IDP IELTS Writing Guide](https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing)   
 🎯 [IELTS Liz - Task 2 Practice](https://ieltsliz.com/ielts-writing-task-2/)   
 🧠 [IELTS Mastery Hub](https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub)   
-📺 [YouTube Playlist](https://www.youtube.com/@SparkSkyTech) 
+📺 [YouTube Playlist](https://www.youtube.com/@SparkSkyTech)   
 """
 
     try:
@@ -83,13 +83,50 @@ Model Answer:
     except Exception as e:
         return f"⚠️ Error getting feedback: {str(e)}"
 
+@app.route("/", methods=["GET", "POST"])
+def home():
+    result = None
+    writing = ""
+    task_type = "Academic"
+    task_number = "1"
+    prompt_text = ""
+
+    if request.method == "POST":
+        writing = request.form.get("writing", "")
+        task_type = request.form.get("task_type", "Academic")
+        task_number = request.form.get("task_number", "1")
+        prompt_select = request.form.get("prompt_select", "")
+        prompt_text = prompt_select or request.form.get("prompt_text", "")
+
+        min_words = 250 if task_number == "2" else 150
+        if word_count(writing) < min_words:
+            result = f"⚠️ Please write at least {min_words} words for Task {task_number}."
+        else:
+            result = get_gpt_feedback(prompt_text, writing, task_number, task_type)
+
+            # Save submission to CSV
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            with open("submissions.csv", "a", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                writer.writerow([timestamp, task_type, task_number, prompt_text[:100], writing[:100]])
+
+    return render_template(
+        "index.html",
+        writing=writing,
+        task_type=task_type,
+        task_number=task_number,
+        prompt_text=prompt_text,
+        result=result,
+        prompts=prompts_list
+    )
+
 @app.route("/download", methods=["POST"])
 def download():
     result = request.form.get("result", "")
     prompt_text = request.form.get("prompt_text", "")
     writing = request.form.get("writing", "")
 
-    # Extract Band Score from result
+    # Extract Band Score
     band_score = "Not available"
     if result.startswith("Band Score:"):
         band_score = result.splitlines()[0]
