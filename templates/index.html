@@ -49,6 +49,15 @@
 {% if result %}
     <pre>{{ result }}</pre>
 
+    <!-- Download Feedback as PDF -->
+    <form method="post" action="/download">
+        <input type="hidden" name="result" value="{{ result }}">
+        <input type="hidden" name="prompt_text" value="{{ prompt_text }}">
+        <input type="hidden" name="writing" value="{{ writing }}">
+
+        <button type="submit">📄 Download Feedback as PDF</button>
+    </form>
+
     <!-- Want More Practice Section -->
     <div class="more-practice">
         <h2>📘 Want More Practice?</h2>
@@ -69,20 +78,40 @@
     </div>
 {% endif %}
 
+<!-- YouTube Video Embed -->
+<div class="video-section">
+    <h2>📺 IELTS Writing Tips – Watch & Learn</h2>
+    <p>Want to improve your writing skills? Watch a short lesson on how to structure high-scoring essays:</p>
+
+    <div class="video-wrapper">
+        <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/dE1dfha0vhk" 
+                title="IELTS Writing Task 2 - Band 8+ Essay Structure"
+                frameborder="0"
+                allowfullscreen></iframe>
+    </div>
+
+    <p style="margin-top: 20px;">
+        Want more help with all parts of IELTS?  
+        🔗 <a href="https://www.youtube.com/watch?v=_Te3zfFW2ZU&list=PLaSmN7qMfXNQBOpbO2P6l9kDU4p0tRQDs" target="_blank">IELTS Full Preparation Playlist</a>
+    </p>
+</div>
+
+<!-- Footer -->
 <div class="footer">
     <p class="footer-links">
-        🔹 Powered by <a href="https://www.sparkskytech.com"  target="_blank"><strong>SparkSkyTech</strong></a><br>
-        🔹 Check out my <a href="https://www.youtube.com/@SparkSkyTech"  target="_blank"><strong>YouTube Channel</strong></a> for more tips!<br>
+        🔹 Powered by <a href="https://www.sparkskytech.com" target="_blank"><strong>SparkSkyTech</strong></a><br>
+        🔹 Check out my <a href="https://www.youtube.com/@SparkSkyTech" target="_blank"><strong>YouTube Channel</strong></a> for more tips!<br>
         🔹 Want to improve your IELTS Writing? Try:<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub"  target="_blank">IELTS Mastery Hub</a><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/vocabulary-builder"  target="_blank">Vocabulary Builder</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/ielts-mastery-hub" target="_blank">IELTS Mastery Hub</a><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;📌 <a href="https://www.sparkskytech.com/shop/learning-education/vocabulary-builder" target="_blank">Vocabulary Builder</a>
     </p>
 
     <p><strong>📘 Official Resources:</strong></p>
     <ul class="footer-links">
-        <li>• <a href="https://learnenglish.britishcouncil.org/skills/writing"  target="_blank">British Council - Writing Tips</a></li>
-        <li>• <a href="https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing"  target="_blank">IDP - IELTS Writing Guide</a></li>
-        <li>• <a href="https://ieltsliz.com/ielts-writing-task-2/"  target="_blank">IELTS Liz - Task 2 Practice</a></li>
+        <li>• <a href="https://learnenglish.britishcouncil.org/skills/writing" target="_blank">British Council - Writing Tips</a></li>
+        <li>• <a href="https://www.ieltsidpindia.com/information/prepare-for-ielts/ielts-writing" target="_blank">IDP - IELTS Writing Guide</a></li>
+        <li>• <a href="https://ieltsliz.com/ielts-writing-task-2/" target="_blank">IELTS Liz - Task 2 Practice</a></li>
     </ul>
 </div>
 
@@ -97,7 +126,6 @@ function toggleDarkMode() {
     localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
 }
 
-// Load saved preference
 window.addEventListener("DOMContentLoaded", () => {
     const darkMode = localStorage.getItem("darkMode") === "true";
     if (darkMode) {
